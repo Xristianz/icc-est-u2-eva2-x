@@ -1,9 +1,13 @@
 import java.util.List;
+import java.util.Set;
 
+import controller.LibroController;
 import models.Book;
+import validaciones.ValidacionesLibro;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        LibroController controller = new LibroController();
         List<Book> libros = List.of(
                 new Book("Java Básico", "Luis Pérez", 2021), // Duplicado
                 new Book("Java Básico", "Luis Pérez", 2019),
@@ -31,5 +35,12 @@ public class App {
                 new Book("Ciberseguridad", "Pedro León", 2023),
                 new Book("Blockchain", "Marta Ríos", 2021),
                 new Book("Machine Learning", "Cristina Gómez", 2022));
+
+        controller.procesarLibros(libros);
+        Set<Book> resultado = controller.procesarLibros(libros);
+
+        System.out.println("Libros procesados (ordenados y sin duplicados):");
+        resultado.forEach(System.out::println);
+
     }
 }
